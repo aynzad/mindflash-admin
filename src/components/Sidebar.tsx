@@ -1,6 +1,6 @@
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
-import { SidebarNavigationItem } from "./SidebarNavigationItem";
 import { SidebarNavigation } from "./SidebarNavigation";
 
 const teams = [
@@ -19,13 +19,14 @@ export function Sidebar() {
       {/* Sidebar component, swap this element with another sidebar if you like */}
       <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
         <div className="flex h-16 shrink-0 items-center">
-          <img
+          <Image
             width={64}
             height={64}
-            className="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=white"
+            className="h-9 w-auto"
+            src="/assets/logo.png"
             alt="MindFlash"
           />
+          <h1 className="text-bold ml-2 pt-1 text-2xl text-white">MindFlash</h1>
         </div>
         <nav className="flex flex-1 flex-col">
           <ul role="list" className="flex flex-1 flex-col gap-y-7">
