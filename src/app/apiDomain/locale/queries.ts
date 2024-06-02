@@ -24,9 +24,14 @@ export async function getLocales<R = Locale>({
 }): Promise<R[]> {
   try {
     const locales = await db.locale.findMany({
-      orderBy: {
-        name: "asc",
-      },
+      orderBy: [
+        {
+          status: "asc",
+        },
+        {
+          code: "asc",
+        },
+      ],
       where: status ? { status } : undefined,
     });
 
