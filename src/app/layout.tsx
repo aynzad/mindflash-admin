@@ -8,14 +8,17 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({
-  children,
-}: {
+export default function RootLayout(props: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable} h-full bg-white`}>
-      <body className="h-full">{children}</body>
+      <body className="h-full">
+        {props.children}
+        {props.modal}
+        <div id="modal-root" />
+      </body>
     </html>
   );
 }

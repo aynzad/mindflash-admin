@@ -1,14 +1,10 @@
 import { getServerSession } from "next-auth";
 
-import { Sidebar } from "@/components/Sidebar";
-import { Header } from "@/components/Header";
+import { Sidebar } from "@/components/sidebar/Sidebar";
+import { PageTopBar } from "@/components/page/PageTopBar";
 import { authOptions } from "@/server/auth";
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout(props: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -21,10 +17,10 @@ export default async function RootLayout({
         <Sidebar />
 
         <div className="lg:pl-72">
-          <Header user={session.user} />
+          <PageTopBar user={session.user} />
 
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+          <main className="py-4">
+            <div className="px-4 sm:px-6 lg:px-8">{props.children}</div>
           </main>
         </div>
       </div>

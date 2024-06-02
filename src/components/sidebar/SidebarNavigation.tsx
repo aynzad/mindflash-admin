@@ -22,8 +22,8 @@ const navigation = [
     icon: ArchiveBoxIcon,
   },
   {
-    name: "Languages",
-    href: "/dashboard/languages",
+    name: "Locales",
+    href: "/dashboard/locales",
     icon: LanguageIcon,
   },
 ];

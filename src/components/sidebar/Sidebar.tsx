@@ -1,5 +1,6 @@
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import cn from "classnames";
 
 import { SidebarNavigation } from "./SidebarNavigation";
 
@@ -8,10 +9,6 @@ const teams = [
   { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
   { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
 ];
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export function Sidebar() {
   return (
@@ -42,7 +39,7 @@ export function Sidebar() {
                   <li key={team.name}>
                     <a
                       href={team.href}
-                      className={classNames(
+                      className={cn(
                         team.current
                           ? "bg-indigo-700 text-white"
                           : "text-indigo-200 hover:bg-indigo-700 hover:text-white",

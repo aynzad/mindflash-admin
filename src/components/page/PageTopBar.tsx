@@ -2,21 +2,22 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { type User } from "next-auth";
 import Image from "next/image";
 
-import MenuItems from "@/components/MenuItems";
-import MenuItem from "@/components/MenuItem";
-import MenuButton from "@/components/MenuButton";
-import Transition from "@/components/Transition";
-import Menu from "@/components/Menu";
+import MenuItems from "@/components/lib/MenuItems";
+import MenuItem from "@/components/lib/MenuItem";
+import MenuButton from "@/components/lib/MenuButton";
+import Transition from "@/components/lib/Transition";
+import Menu from "@/components/lib/Menu";
 
 const userNavigation = [
   { name: "Your profile", href: "#" },
   { name: "Sign out", href: "#" },
 ];
 
-export function Header({ user }: { user: User }) {
+export function PageTopBar({ user }: { user: User }) {
   return (
     <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-      <div className="flex flex-1 flex-row-reverse gap-x-4 self-stretch lg:gap-x-6">
+      <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+        <div id="page-title-root" className="flex flex-1" />
         <div className="flex items-center gap-x-4 lg:gap-x-6">
           {/* Profile dropdown */}
           <Menu as="div" className="relative">
