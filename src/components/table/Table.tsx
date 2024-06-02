@@ -1,4 +1,5 @@
 import { type ReactElement } from "react";
+import { FolderOpenIcon } from "@heroicons/react/24/outline";
 
 export interface ColumnProps<T> {
   key: string;
@@ -35,7 +36,15 @@ export function Table<T>({ data, columns }: TableProps<T>) {
           {!data?.length ? (
             <tr>
               <td colSpan={columns.length} className="text-center">
-                No data
+                <div className="my-24 text-center">
+                  <FolderOpenIcon className="mx-auto h-12 w-12 text-gray-400" />
+                  <h3 className="mt-2 text-sm font-semibold text-gray-900">
+                    No data
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Get started by creating a new data
+                  </p>
+                </div>
               </td>
             </tr>
           ) : (

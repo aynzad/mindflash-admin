@@ -1,6 +1,6 @@
 "use server";
 
-import { type Locale } from "@prisma/client";
+import { type Status, type Locale } from "@prisma/client";
 
 import { db } from "@/server/db";
 
@@ -17,14 +17,17 @@ export async function getLocale(code: string) {
 
 export async function getLocales<R = Locale>({
   select,
+  status,
 }: {
   select?: (locale: Locale) => R;
+  status?: Status;
 }): Promise<R[]> {
   try {
     const locales = await db.locale.findMany({
       orderBy: {
         name: "asc",
       },
+      where: status ? { status } : undefined,
     });
 
     return select ? locales.map(select) : (locales as unknown as R[]);

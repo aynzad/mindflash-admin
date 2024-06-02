@@ -47,18 +47,18 @@ export function toTableData(locale: Locale): Data {
     name: locale.name,
     code: locale.code,
     status: locale.status,
-    editLink: `/dashboard/locales/${locale.code}`,
+    editLink: `/dashboard/locales/${locale.code}/edit`,
   };
 }
 
-async function locales() {
+async function Locales() {
   const data = await getLocales({ select: toTableData });
 
   return (
     <PageLayout
       title="Locales"
       description="A list of all the locales in the app"
-      buttonTitle="Add locale"
+      buttonTitle="Create locale"
       buttonHref="/dashboard/locales/create"
     >
       <Table columns={columns} data={data} />
@@ -66,4 +66,4 @@ async function locales() {
   );
 }
 
-export default locales;
+export default Locales;
