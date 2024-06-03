@@ -1,20 +1,16 @@
 import Link from "next/link";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import { type Locale, type Status } from "@prisma/client";
 
 import { StatusBadge } from "@/components/statusBadge/StatusBadge";
 import { PageLayout } from "@/components/page/PageLayout";
 import { Table, type ColumnProps } from "@/components/table/Table";
 import { getLocales } from "@/app/apiDomain/locale/queries";
+import {
+  type LocaleTableData,
+  toLocaleTableData,
+} from "@/app/apiDomain/locale/utils";
 
-type Data = {
-  name: string;
-  code: string;
-  status: Status;
-  editLink: string;
-};
-
-const columns: ColumnProps<Data>[] = [
+const columns: ColumnProps<LocaleTableData>[] = [
   { key: "name", title: "Name" },
   { key: "code", title: "Code", width: 120 },
   {
@@ -42,17 +38,8 @@ const columns: ColumnProps<Data>[] = [
   },
 ];
 
-export function toTableData(locale: Locale): Data {
-  return {
-    name: locale.name,
-    code: locale.code,
-    status: locale.status,
-    editLink: `/dashboard/locales/${locale.code}/edit`,
-  };
-}
-
 async function Locales() {
-  const data = await getLocales({ select: toTableData });
+  const data = await getLocales({ select: toLocaleTableData });
 
   return (
     <PageLayout

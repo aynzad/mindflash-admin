@@ -1,29 +1,20 @@
 import Link from "next/link";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import { type Status } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import pluralize from "pluralize";
 
 import { StatusBadge } from "@/components/statusBadge/StatusBadge";
 import { PageLayout } from "@/components/page/PageLayout";
 import { Table, type ColumnProps } from "@/components/table/Table";
-import {
-  type CategoryWithTranslationAndCreatedBy,
-  getCategories,
-} from "@/app/apiDomain/category/queries";
+import { getCategories } from "@/app/apiDomain/category/queries";
 import { DEFAULT_LOCALE } from "@/constants";
 import { authOptions } from "@/server/auth";
+import {
+  type CategoryTableData,
+  toCategoryTableData,
+} from "@/app/apiDomain/category/utils";
 
-type Data = {
-  id: string;
-  name: string;
-  translations: number;
-  status: Status;
-  createdBy: string;
-  editLink: string;
-};
-
-const columns: ColumnProps<Data>[] = [
+const columns: ColumnProps<CategoryTableData>[] = [
   {
     key: "name",
     title: `Name (${DEFAULT_LOCALE})`,
@@ -72,22 +63,6 @@ const columns: ColumnProps<Data>[] = [
   },
 ];
 
-export function toTableData(
-  category: CategoryWithTranslationAndCreatedBy,
-): Data {
-  return {
-    id: category.id,
-    name:
-      category.CategoryTranslation.find(
-        (item) => item.localeCode === DEFAULT_LOCALE,
-      )?.name ?? "-",
-    translations: category.CategoryTranslation.length,
-    status: category.status,
-    createdBy: category.createdBy.name ?? "-",
-    editLink: `/dashboard/categories/${category.id}/edit`,
-  };
-}
-
 async function Categories() {
   const session = await getServerSession(authOptions);
 
@@ -95,7 +70,7 @@ async function Categories() {
     return null;
   }
 
-  const data = await getCategories({ select: toTableData });
+  const data = await getCategories({ select: toCategoryTableData });
 
   return (
     <PageLayout
