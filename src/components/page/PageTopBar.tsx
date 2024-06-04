@@ -1,18 +1,13 @@
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { type User } from "next-auth";
 import Image from "next/image";
-import Link from "next/link";
 
 import MenuItems from "@/components/lib/MenuItems";
 import MenuItem from "@/components/lib/MenuItem";
 import MenuButton from "@/components/lib/MenuButton";
 import Transition from "@/components/lib/Transition";
 import Menu from "@/components/lib/Menu";
-
-const userNavigation = [
-  { name: "Your profile", href: "#" },
-  { name: "Log out", href: "/logout" },
-];
+import { LogoutButton } from "../buttons/LogoutButton";
 
 export function PageTopBar({ user }: { user: User }) {
   return (
@@ -53,16 +48,9 @@ export function PageTopBar({ user }: { user: User }) {
               leaveTo="transform opacity-0 scale-95"
             >
               <MenuItems className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                {userNavigation.map((item) => (
-                  <MenuItem key={item.name}>
-                    <Link
-                      href={item.href}
-                      className="block px-3 py-1 text-sm leading-6 text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </Link>
-                  </MenuItem>
-                ))}
+                <MenuItem>
+                  <LogoutButton />
+                </MenuItem>
               </MenuItems>
             </Transition>
           </Menu>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { authOptions } from "@/server/auth";
+import { LoginButton } from "@/components/buttons/LoginButton";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
@@ -30,11 +31,7 @@ export default async function HomePage() {
               </button>
             </Link>
           ) : (
-            <Link href="/login">
-              <button className="rounded-md bg-white/10 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20">
-                Log in to dashboard
-              </button>
-            </Link>
+            <LoginButton />
           )}
         </div>
       </div>
