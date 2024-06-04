@@ -6,7 +6,7 @@ import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import { TextInput } from "@/components/textInput/TextInput";
-import { SelectStatus } from "../selectStatusInput/SelectInput";
+import { SelectStatusInput } from "@/components/selectStatusInput/selectStatusInput";
 import { upsertLocale } from "@/app/apiDomain/locale/actions";
 import { REQUIRED_RULE } from "./forms.constants";
 
@@ -79,7 +79,7 @@ export function UpsertLocaleForm({
           control={control}
           rules={{ required: REQUIRED_RULE }}
           render={({ field, fieldState: { error } }) => (
-            <SelectStatus {...field} error={error} />
+            <SelectStatusInput {...field} error={error} />
           )}
         />
 

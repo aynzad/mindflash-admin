@@ -12,7 +12,7 @@ const OPTIONS = Object.values(Status).map((status) => ({
   label: status,
 }));
 
-export const SelectStatus = forwardRef<
+export const SelectStatusInput = forwardRef<
   HTMLSelectElement,
   Omit<SelectInputProps<StatusType>, "options" | "label" | "name">
 >(({ ...selectInputProps }, ref) => {
@@ -27,4 +27,4 @@ export const SelectStatus = forwardRef<
   );
 });
 
-SelectStatus.displayName = "SelectStatus";
+SelectStatusInput.displayName = "SelectStatusInput";
