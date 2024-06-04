@@ -26,15 +26,15 @@ export async function getCategory(id: string) {
     return undefined;
   }
 }
-export type CategoryWithTranslationAndCreatedBy = NonNullable<
+export type CategoryWithConnections = NonNullable<
   Awaited<ReturnType<typeof getCategory>>
 >;
 
-export async function getCategories<R = CategoryWithTranslationAndCreatedBy>({
+export async function getCategories<R = CategoryWithConnections>({
   select,
   status,
 }: {
-  select?: (category: CategoryWithTranslationAndCreatedBy) => R;
+  select?: (category: CategoryWithConnections) => R;
   status?: Status;
 }): Promise<R[]> {
   try {
@@ -52,9 +52,9 @@ export async function getCategories<R = CategoryWithTranslationAndCreatedBy>({
     return [];
   }
 }
-export type CategoriesWithTranslationAndCreatedBy<
-  R = CategoryWithTranslationAndCreatedBy,
-> = Awaited<ReturnType<typeof getCategories<R>>>;
+export type CategoriesWithConnections<R = CategoryWithConnections> = Awaited<
+  ReturnType<typeof getCategories<R>>
+>;
 
 export async function getCategoryTranslation(id: string, localeCode: string) {
   try {

@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { type Locale } from "@prisma/client";
 
 import {
-  type CategoryWithTranslationAndCreatedBy,
+  type CategoryWithConnections,
   getCategory,
 } from "@/app/apiDomain/category/queries";
 import { DEFAULT_LOCALE } from "@/constants";
@@ -12,7 +12,7 @@ import { UpsertCategoryTranslationForm } from "@/components/forms/UpsertCategory
 
 function getTranslation(
   categoryId: string,
-  category: CategoryWithTranslationAndCreatedBy,
+  category: CategoryWithConnections,
   locale: Locale,
 ) {
   const translate = category.CategoryTranslation.find(

@@ -1,6 +1,6 @@
 import { type Status } from "@prisma/client";
 
-import { type CategoryWithTranslationAndCreatedBy } from "./queries";
+import { type CategoryWithConnections } from "./queries";
 import { DEFAULT_LOCALE } from "@/constants";
 
 export type CategoryTableData = {
@@ -13,7 +13,7 @@ export type CategoryTableData = {
 };
 
 export function toCategoryTableData(
-  category: CategoryWithTranslationAndCreatedBy,
+  category: CategoryWithConnections,
 ): CategoryTableData {
   return {
     id: category.id,

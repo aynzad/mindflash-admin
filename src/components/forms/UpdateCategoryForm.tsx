@@ -12,7 +12,7 @@ import {
 } from "@/app/apiDomain/category/actions";
 import { REQUIRED_RULE } from "./forms.constants";
 import { DEFAULT_LOCALE } from "@/constants";
-import { type CategoryWithTranslationAndCreatedBy } from "@/app/apiDomain/category/queries";
+import { type CategoryWithConnections } from "@/app/apiDomain/category/queries";
 
 export function UpdateCategoryForm({
   isModal,
@@ -21,7 +21,7 @@ export function UpdateCategoryForm({
 }: {
   isModal?: boolean;
   categoryName: string;
-  category: CategoryWithTranslationAndCreatedBy;
+  category: CategoryWithConnections;
 }) {
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
