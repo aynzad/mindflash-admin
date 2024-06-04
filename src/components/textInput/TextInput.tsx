@@ -7,18 +7,18 @@ import { type FieldError } from "react-hook-form";
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   name: string;
-  classNames?: string;
-  inputClassNames?: string;
+  className?: string;
+  inputClassName?: string;
   error?: FieldError;
 }
 
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
-    { label, name, classNames, inputClassNames = "", error, ...textInputProps },
+    { label, name, className, inputClassName = "", error, ...textInputProps },
     ref,
   ) => {
     return (
-      <div className={classNames}>
+      <div className={className}>
         <label
           htmlFor={name}
           className={cn(
@@ -41,7 +41,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               textInputProps.disabled
                 ? "cursor-not-allowed bg-gray-100"
                 : "bg-white",
-              inputClassNames,
+              inputClassName,
             )}
           />
         </div>

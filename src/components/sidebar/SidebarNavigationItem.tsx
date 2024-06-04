@@ -7,10 +7,7 @@ import {
 } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import cn from "classnames";
 
 export function SidebarNavigationItem({
   name,
@@ -29,7 +26,7 @@ export function SidebarNavigationItem({
   return (
     <Link
       href={href}
-      className={classNames(
+      className={cn(
         isCurrent
           ? "bg-indigo-700 text-white"
           : "text-indigo-200 hover:bg-indigo-700 hover:text-white",
@@ -37,7 +34,7 @@ export function SidebarNavigationItem({
       )}
     >
       <Icon
-        className={classNames(
+        className={cn(
           isCurrent ? "text-white" : "text-indigo-200 group-hover:text-white",
           "h-6 w-6 shrink-0",
         )}

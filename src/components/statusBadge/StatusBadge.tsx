@@ -3,10 +3,10 @@ import cn from "classnames";
 
 export function StatusBadge({
   status,
-  classNames = "",
+  className = "",
 }: {
   status: Status;
-  classNames?: string;
+  className?: string;
 }) {
   return (
     <span
@@ -15,7 +15,7 @@ export function StatusBadge({
         status === Status.ACTIVE && "bg-blue-500 text-blue-100",
         status === Status.DISABLED && "bg-red-500 text-red-100",
         status === Status.PENDING && "bg-lime-500 text-lime-800",
-        classNames,
+        className,
       )}
     >
       {status}

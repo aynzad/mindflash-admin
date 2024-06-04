@@ -23,8 +23,8 @@ export interface SelectInputProps<TValue extends string>
   > {
   label: string;
   name: string;
-  classNames?: string;
-  inputClassNames?: string;
+  className?: string;
+  inputClassName?: string;
   value: TValue;
   options: SelectInputOptions<TValue>[];
   onChange?: (newValue: TValue) => void;
@@ -35,7 +35,8 @@ export function SelectInputComponent<TValue extends string>(
   {
     label,
     name,
-    classNames,
+    className,
+    inputClassName,
     options,
     onChange,
     error,
@@ -53,7 +54,7 @@ export function SelectInputComponent<TValue extends string>(
   );
 
   return (
-    <div className={classNames}>
+    <div className={className}>
       <label
         htmlFor={name}
         className={cn(
@@ -76,6 +77,7 @@ export function SelectInputComponent<TValue extends string>(
             ? "cursor-not-allowed bg-gray-100"
             : "bg-white",
           error ? "ring-red-500" : "focus:ring-indigo-500",
+          inputClassName,
         )}
       >
         {options.map((option) => (
