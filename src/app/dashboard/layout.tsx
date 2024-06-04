@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 import { Sidebar } from "@/components/sidebar/Sidebar";
 import { PageTopBar } from "@/components/page/PageTopBar";
@@ -7,8 +8,8 @@ import { authOptions } from "@/server/auth";
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
 
-  if (!session) {
-    return null;
+  if (!session || !session.user) {
+    return redirect("/");
   }
 
   return (

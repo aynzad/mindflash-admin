@@ -10,7 +10,7 @@ async function Dashboard() {
   const isLoggedIn = !!session?.user;
 
   if (!isLoggedIn) {
-    return redirect("/login");
+    return redirect("/");
   }
 
   return (
