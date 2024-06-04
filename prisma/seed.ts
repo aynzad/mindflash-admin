@@ -1,6 +1,7 @@
-import { db } from "@/server/db";
 import { PrismaClient } from "@prisma/client";
 import { type Prisma } from "@prisma/client";
+
+import { db } from "../src/server/db";
 
 const locales = [
   {
