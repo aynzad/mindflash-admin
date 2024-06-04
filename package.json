@@ -13,6 +13,7 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
+    "ts-check": "tsc --noEmit",
     "start": "next start"
   },
   "dependencies": {
