@@ -10,6 +10,7 @@ export default {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
       colors: {
+        brand: "#F47417",
         primary: "#673FC0",
         "primary-lighter": "#B4BCD0",
         "primary-light": "#A3A4AC",
