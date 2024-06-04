@@ -2,6 +2,7 @@
 
 import { type BoxTranslation, type Box } from "@prisma/client";
 import { getServerSession } from "next-auth";
+import { revalidatePath } from "next/cache";
 
 import { db } from "@/server/db";
 import { DEFAULT_LOCALE } from "@/constants";
@@ -32,7 +33,7 @@ export async function createBox(data: CreateBoxPayload) {
   const { name, description, ...boxData } = data;
 
   try {
-    return await db.box.create({
+    const response = await db.box.create({
       data: {
         ...boxData,
         createdById: session.user.id,
@@ -49,6 +50,9 @@ export async function createBox(data: CreateBoxPayload) {
         },
       },
     });
+    revalidatePath("/dashboard/boxes", "page");
+
+    return response;
   } catch (e) {
     console.error(e);
     return undefined;
@@ -57,10 +61,13 @@ export async function createBox(data: CreateBoxPayload) {
 
 export async function updateBox(data: UpdateBoxPayload) {
   try {
-    return await db.box.update({
+    const response = await db.box.update({
       where: { id: data.id },
       data,
     });
+    revalidatePath("/dashboard/boxes", "page");
+
+    return response;
   } catch (e) {
     console.error(e);
     return undefined;

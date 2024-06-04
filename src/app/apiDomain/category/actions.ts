@@ -2,6 +2,7 @@
 
 import { type CategoryTranslation, type Category } from "@prisma/client";
 import { getServerSession } from "next-auth";
+import { revalidatePath } from "next/cache";
 
 import { db } from "@/server/db";
 import { DEFAULT_LOCALE } from "@/constants";
@@ -31,7 +32,7 @@ export async function createCategory(data: CreateCategoryPayload) {
   const { name, ...categoryData } = data;
 
   try {
-    return await db.category.create({
+    const response = await db.category.create({
       data: {
         ...categoryData,
         createdById: session.user.id,
@@ -47,6 +48,9 @@ export async function createCategory(data: CreateCategoryPayload) {
         },
       },
     });
+    revalidatePath("/dashboard/categories", "page");
+
+    return response;
   } catch (e) {
     console.error(e);
     return undefined;
@@ -55,10 +59,13 @@ export async function createCategory(data: CreateCategoryPayload) {
 
 export async function updateCategory(data: UpdateCategoryPayload) {
   try {
-    return await db.category.update({
+    const response = await db.category.update({
       where: { id: data.id },
       data,
     });
+    revalidatePath("/dashboard/categories", "page");
+
+    return response;
   } catch (e) {
     console.error(e);
     return undefined;

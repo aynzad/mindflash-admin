@@ -38,8 +38,7 @@ export function CreateBoxForm({
       await createBox(data);
       if (isModal) {
         router.refresh();
-        // to fix refresh data after closing modal issue
-        setTimeout(() => router.back(), 100);
+        router.back();
       } else {
         router.push("/dashboard/boxes");
       }
