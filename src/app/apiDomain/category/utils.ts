@@ -9,7 +9,6 @@ export type CategoryTableData = {
   translations: number;
   status: Status;
   createdBy: string;
-  editLink: string;
 };
 
 export function toCategoryTableData(
@@ -24,6 +23,5 @@ export function toCategoryTableData(
     translations: category.CategoryTranslation.length,
     status: category.status,
     createdBy: category.createdBy.name ?? "-",
-    editLink: `/dashboard/categories/${category.id}/edit`,
   };
 }

@@ -27,7 +27,7 @@ const columns: ColumnProps<LocaleTableData>[] = [
     render: (record) => {
       return (
         <Link
-          href={record.editLink}
+          href={`/dashboard/locales/${record.code}/edit`}
           className="align-baseline text-indigo-600 hover:text-indigo-900"
           passHref
         >

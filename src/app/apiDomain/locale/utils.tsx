@@ -4,7 +4,6 @@ export type LocaleTableData = {
   name: string;
   code: string;
   status: Status;
-  editLink: string;
 };
 
 export function toLocaleTableData(locale: Locale): LocaleTableData {
@@ -12,6 +11,5 @@ export function toLocaleTableData(locale: Locale): LocaleTableData {
     name: locale.name,
     code: locale.code,
     status: locale.status,
-    editLink: `/dashboard/locales/${locale.code}/edit`,
   };
 }

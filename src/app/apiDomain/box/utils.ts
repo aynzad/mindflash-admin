@@ -11,7 +11,6 @@ export type BoxTableData = {
   category: BoxWithConnections["category"];
   downloads: number;
   createdBy: string;
-  editLink: string;
 };
 
 export function toBoxTableData(box: BoxWithConnections): BoxTableData {
@@ -25,6 +24,5 @@ export function toBoxTableData(box: BoxWithConnections): BoxTableData {
     category: box.category,
     downloads: box.downloadCount,
     createdBy: box.createdBy.name ?? "-",
-    editLink: `/dashboard/boxes/${box.id}/edit`,
   };
 }

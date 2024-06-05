@@ -51,7 +51,12 @@ export default async function Box({
   }
 
   return (
-    <PageLayout title={`"${boxName}" box`} description="Box translations">
+    <PageLayout
+      title={`"${boxName}" box`}
+      description="Box translations"
+      buttonTitle="Add card"
+      buttonHref={`/dashboard/boxes/${id}/card/create`}
+    >
       <div className="space-y-12">
         {locales.map((locale) => (
           <UpsertBoxTranslationForm

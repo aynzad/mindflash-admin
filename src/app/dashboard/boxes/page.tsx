@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PencilIcon } from "@heroicons/react/24/outline";
+import { PencilIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import { getServerSession } from "next-auth";
 import pluralize from "pluralize";
 
@@ -59,16 +59,25 @@ const columns: ColumnProps<BoxTableData>[] = [
     key: "editLink",
     title: "Actions",
     align: "right",
-    width: 120,
+    width: 220,
     render: (record) => {
       return (
-        <Link
-          href={record.editLink}
-          className="align-baseline text-indigo-600 hover:text-indigo-900"
-          passHref
-        >
-          <PencilIcon className="inline-block h-4 w-4" /> Edit
-        </Link>
+        <>
+          <Link
+            href={`/dashboard/boxes/${record.id}/card/create`}
+            className="mr-3 align-baseline text-indigo-600 hover:text-indigo-900"
+            passHref
+          >
+            <PlusCircleIcon className="inline-block h-4 w-4" /> Add Card
+          </Link>
+          <Link
+            href={`/dashboard/boxes/${record.id}/edit`}
+            className="align-baseline text-indigo-600 hover:text-indigo-900"
+            passHref
+          >
+            <PencilIcon className="inline-block h-4 w-4" /> Edit
+          </Link>
+        </>
       );
     },
   },

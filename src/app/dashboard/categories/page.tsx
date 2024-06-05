@@ -52,7 +52,7 @@ const columns: ColumnProps<CategoryTableData>[] = [
     render: (record) => {
       return (
         <Link
-          href={record.editLink}
+          href={`/dashboard/categories/${record.id}/edit`}
           className="align-baseline text-indigo-600 hover:text-indigo-900"
           passHref
         >
