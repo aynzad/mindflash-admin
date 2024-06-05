@@ -5,42 +5,43 @@ import { Status } from "@prisma/client";
 import { type SubmitHandler, useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-import { TextInput } from "@/components/textInput/TextInput";
 import { SelectStatusInput } from "@/components/selectStatusInput/selectStatusInput";
-import { type CreateBoxPayload, createBox } from "@/app/apiDomain/box/actions";
+import {
+  type CreateCardPayload,
+  createCard,
+} from "@/app/apiDomain/card/actions";
 import { REQUIRED_RULE } from "./forms.constants";
 import { DEFAULT_LOCALE } from "@/constants";
-import { type CategoriesWithConnections } from "@/app/apiDomain/category/queries";
-import { SelectCategoryInput } from "../selectCategoryInput/selectCategoryInput";
+import { TextAreaInput } from "../TextAreaInput/TextAreaInput";
 
-export function CreateBoxForm({
+export function CreateCardForm({
   isModal,
-  categories,
+  boxId,
 }: {
   isModal?: boolean;
-  categories: CategoriesWithConnections;
+  boxId: string;
 }) {
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
 
-  const { handleSubmit, control } = useForm<CreateBoxPayload>({
+  const { handleSubmit, control } = useForm<CreateCardPayload>({
     defaultValues: {
-      name: "",
-      description: "",
-      categoryId: categories[0]?.id ?? "",
+      textFront: "",
+      textBack: "",
+      boxId,
       status: Status.ACTIVE,
     },
   });
 
-  const onSubmit: SubmitHandler<CreateBoxPayload> = async (data) => {
+  const onSubmit: SubmitHandler<CreateCardPayload> = async (data) => {
     setIsPending(true);
     try {
-      await createBox(data);
+      await createCard(data);
       if (isModal) {
         router.refresh();
         router.back();
       } else {
-        router.push("/dashboard/boxes");
+        router.push(`/dashboard/boxes/${boxId}/cards`);
       }
     } finally {
       setIsPending(false);
@@ -51,52 +52,45 @@ export function CreateBoxForm({
     <div className="sm:w-full sm:max-w-sm">
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <Controller
-          name="name"
+          name="textFront"
           control={control}
           rules={{
             required: REQUIRED_RULE,
             maxLength: {
-              value: 30,
-              message: "Name should not exceed 30 characters",
+              value: 255,
+              message: "Front should not exceed 255 characters",
             },
             minLength: {
-              value: 5,
-              message: "Name should be at least 5 characters long",
+              value: 3,
+              message: "Front should be at least 3 characters long",
             },
           }}
           render={({ field, fieldState: { error } }) => (
-            <TextInput
-              label={`Name (${DEFAULT_LOCALE})`}
+            <TextAreaInput
+              label={`Front (${DEFAULT_LOCALE})`}
               {...field}
               error={error}
             />
           )}
         />
         <Controller
-          name="description"
+          name="textBack"
           control={control}
           rules={{
+            required: REQUIRED_RULE,
+            maxLength: {
+              value: 255,
+              message: "Back should not exceed 255 characters",
+            },
             minLength: {
-              value: 5,
-              message: "Description should be at least 5 characters long",
+              value: 3,
+              message: "Back should be at least 3 characters long",
             },
           }}
           render={({ field, fieldState: { error } }) => (
-            <TextInput
-              label={`Description (${DEFAULT_LOCALE})`}
+            <TextAreaInput
+              label={`Back (${DEFAULT_LOCALE})`}
               {...field}
-              error={error}
-            />
-          )}
-        />
-        <Controller
-          name="categoryId"
-          control={control}
-          rules={{ required: REQUIRED_RULE }}
-          render={({ field, fieldState: { error } }) => (
-            <SelectCategoryInput
-              {...field}
-              categories={categories}
               error={error}
             />
           )}
@@ -116,7 +110,7 @@ export function CreateBoxForm({
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
-            Create box
+            Create card
           </button>
         </div>
       </form>

@@ -41,36 +41,35 @@ export const LoadingSpinner = ({
         fy=".3125"
         gradientTransform="scale(1.5)"
       >
-        <stop offset="0" stop-color={VARIANT_COLOR[variant]}></stop>
+        <stop offset="0" stopColor={VARIANT_COLOR[variant]}></stop>
         <stop
           offset=".3"
-          stop-color={VARIANT_COLOR[variant]}
-          stop-opacity=".9"
+          stopColor={VARIANT_COLOR[variant]}
+          stopOpacity=".9"
         ></stop>
         <stop
           offset=".6"
-          stop-color={VARIANT_COLOR[variant]}
-          stop-opacity=".6"
+          stopColor={VARIANT_COLOR[variant]}
+          stopOpacity=".6"
         ></stop>
         <stop
           offset=".8"
-          stop-color={VARIANT_COLOR[variant]}
-          stop-opacity=".3"
+          stopColor={VARIANT_COLOR[variant]}
+          stopOpacity=".3"
         ></stop>
         <stop
           offset="1"
-          stop-color={VARIANT_COLOR[variant]}
-          stop-opacity="0"
+          stopColor={VARIANT_COLOR[variant]}
+          stopOpacity="0"
         ></stop>
       </radialGradient>
       <circle
-        transform-origin="center"
         fill="none"
         stroke="url(#a7)"
-        stroke-width="24"
-        stroke-linecap="round"
-        stroke-dasharray="200 1000"
-        stroke-dashoffset="0"
+        strokeWidth="24"
+        strokeLinecap="round"
+        strokeDasharray="200 1000"
+        strokeDashoffset="0"
         cx="100"
         cy="100"
         r="70"
@@ -87,12 +86,11 @@ export const LoadingSpinner = ({
         ></animateTransform>
       </circle>
       <circle
-        transform-origin="center"
         fill="none"
         opacity=".2"
         stroke={VARIANT_COLOR[variant]}
-        stroke-width="24"
-        stroke-linecap="round"
+        strokeWidth="24"
+        strokeLinecap="round"
         cx="100"
         cy="100"
         r="70"

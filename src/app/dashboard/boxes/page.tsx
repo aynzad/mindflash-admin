@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { PencilIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
+import {
+  PencilIcon,
+  PlusCircleIcon,
+  EyeIcon,
+} from "@heroicons/react/24/outline";
 import { getServerSession } from "next-auth";
 import pluralize from "pluralize";
 
@@ -42,7 +46,7 @@ const columns: ColumnProps<BoxTableData>[] = [
   },
   {
     key: "downloads",
-    title: "Downloads",
+    title: "DL",
     width: 60,
   },
   {
@@ -64,7 +68,14 @@ const columns: ColumnProps<BoxTableData>[] = [
       return (
         <>
           <Link
-            href={`/dashboard/boxes/${record.id}/card/create`}
+            href={`/dashboard/boxes/${record.id}/cards`}
+            className="mr-3 align-baseline text-indigo-600 hover:text-indigo-900"
+            passHref
+          >
+            <EyeIcon className="inline-block h-4 w-4" /> Cards
+          </Link>
+          <Link
+            href={`/dashboard/boxes/${record.id}/cards/create`}
             className="mr-3 align-baseline text-indigo-600 hover:text-indigo-900"
             passHref
           >

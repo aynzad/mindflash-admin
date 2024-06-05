@@ -35,12 +35,12 @@ function getTranslation(
 }
 
 export default async function Box({
-  params: { id },
+  params: { boxId },
 }: {
-  params: { id: string };
+  params: { boxId: string };
 }) {
   const locales = await getLocales({});
-  const box = await getBox(id);
+  const box = await getBox(boxId);
 
   const boxName =
     box?.BoxTranslation.find((item) => item.localeCode === DEFAULT_LOCALE)
@@ -55,15 +55,15 @@ export default async function Box({
       title={`"${boxName}" box`}
       description="Box translations"
       buttonTitle="Add card"
-      buttonHref={`/dashboard/boxes/${id}/card/create`}
+      buttonHref={`/dashboard/boxes/${boxId}/cards/create`}
     >
       <div className="space-y-12">
         {locales.map((locale) => (
           <UpsertBoxTranslationForm
             key={locale.code}
-            boxId={id}
+            boxId={boxId}
             locale={locale}
-            translation={getTranslation(id, box, locale)}
+            translation={getTranslation(boxId, box, locale)}
           />
         ))}
       </div>

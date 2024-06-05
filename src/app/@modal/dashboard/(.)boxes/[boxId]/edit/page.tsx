@@ -5,12 +5,12 @@ import { DEFAULT_LOCALE } from "@/constants";
 import { getCategories } from "@/app/apiDomain/category/queries";
 
 export default async function EditBoxModal({
-  params: { id },
+  params: { boxId },
 }: {
-  params: { id: string };
+  params: { boxId: string };
 }) {
   const categories = await getCategories({});
-  const box = await getBox(id);
+  const box = await getBox(boxId);
 
   const boxName =
     box?.BoxTranslation.find((item) => item.localeCode === DEFAULT_LOCALE)
