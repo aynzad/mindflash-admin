@@ -1,5 +1,5 @@
 import { LoadingSpinnerModal } from "@/components/loadingSpinner/LoadingSpinnerModal";
 
-export default async function ModalLoading() {
+export default function ModalLoading() {
   return <LoadingSpinnerModal />;
 }
